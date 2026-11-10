@@ -1,0 +1,28 @@
+project_id   = "example-project"
+name         = "example-vm"
+zone         = "us-central1-a"
+machine_type = "g2-standard-4"
+
+boot_disk = {
+  size_gb = 50
+  type    = "pd-balanced"
+  image   = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts"
+}
+
+data_disks = {
+  example-data = {
+    size_gb = 200
+    type    = "pd-ssd"
+  }
+}
+
+# GCP assigns an internal IP and an ephemeral public IP with these settings.
+network_ip = null
+static_ip  = null
+# To manage a reserved static public IP, specify its name and address:
+# static_ip = { name = "example-address", address = "203.0.113.10" }
+
+tags                  = []
+metadata              = {}
+service_account_email = "vm-runtime@example-project.iam.gserviceaccount.com"
+

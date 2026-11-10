@@ -1,0 +1,23 @@
+# Copy to imports.local.tf only when adopting existing resources.
+# Keep only the blocks that match resources in terraform.tfvars.
+
+import {
+  to = module.vm.google_compute_instance.this
+  id = "projects/example-project/zones/us-central1-a/instances/example-vm"
+}
+
+import {
+  to = module.vm.google_compute_disk.boot
+  id = "projects/example-project/zones/us-central1-a/disks/example-vm"
+}
+
+import {
+  to = module.vm.google_compute_disk.data["example-data"]
+  id = "projects/example-project/zones/us-central1-a/disks/example-data"
+}
+
+# Requires a static_ip configured in terraform.tfvars.
+# import {
+#   to = module.vm.google_compute_address.external[0]
+#   id = "projects/example-project/regions/us-central1/addresses/example-address"
+# }
